@@ -11,36 +11,27 @@ import com.fullstacklibrary.springbootlibrary.entity.Book;
 @Configuration
 public class DataRestConfig implements RepositoryRestConfigurer {
 
-	private String theAllowedOrigins = "httpp://localhost:3000";
-	
+	private String theAllowedOrigins = "http://localhost:3000";
+
 	@Override
 	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
-		
-		HttpMethod[] theUnsupportedActions = {
-				HttpMethod.POST,
-				HttpMethod.PATCH,
-				HttpMethod.DELETE,
-				HttpMethod.PUT};
-		
+
+		HttpMethod[] theUnsupportedActions = { HttpMethod.POST, HttpMethod.PATCH, HttpMethod.DELETE, HttpMethod.PUT };
+
 		config.exposeIdsFor(Book.class);
-		
+
 		disableHttpMethods(Book.class, config, theUnsupportedActions);
-		
+
 		/* Configure CORS Mapping */
-		cors.addMapping(config.getBasePath() + "/**")
-			.allowedOrigins(theAllowedOrigins);
+		cors.addMapping(config.getBasePath() + "/**").allowedOrigins(theAllowedOrigins);
 	}
-	
-	
-	
-	private void disableHttpMethods(Class theClass, 
-									RepositoryRestConfiguration config, 
-									HttpMethod[] theUnsupporetedActions) {
-		config.getExposureConfiguration()
-		.forDomainType(theClass)
-		.withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupporetedActions))
-		.withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupporetedActions));
-		
+
+	private void disableHttpMethods(Class theClass, RepositoryRestConfiguration config,
+			HttpMethod[] theUnsupporetedActions) {
+		config.getExposureConfiguration().forDomainType(theClass)
+				.withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupporetedActions))
+				.withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupporetedActions));
+
 	}
-	
+
 }
