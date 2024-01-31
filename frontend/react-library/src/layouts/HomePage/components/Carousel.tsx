@@ -31,7 +31,7 @@ export const Carousel = () => {
         loadedBooks.push({
           id: responseData[key].id,
           title: responseData[key].title,
-          authour: responseData[key].authour,
+          author: responseData[key].author,
           description: responseData[key].description,
           copies: responseData[key].copies,
           copiesAvailable: responseData[key].copiesAvailable,

@@ -1,7 +1,7 @@
 class BookModel {
   id: number;
   title: string;
-  authour?: string;
+  author?: string;
   description?: string;
   copies?: string;
   copiesAvailable?: string;
@@ -11,7 +11,7 @@ class BookModel {
   constructor(
     id: number,
     title: string,
-    authour: string,
+    author: string,
     description: string,
     copies: string,
     copiesAvailable: string,
@@ -20,7 +20,7 @@ class BookModel {
   ) {
     this.id = id;
     this.title = title;
-    this.authour = authour;
+    this.author = author;
     this.description = description;
     this.copies = copies;
     this.copiesAvailable = copiesAvailable;
